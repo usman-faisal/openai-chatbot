@@ -1,10 +1,11 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useRef, useState } from 'react'
 import Container from "./components/Container"
 import Header from "./components/Header"
 import Chat from './components/Chat'
 import Form from './components/Form'
 import {response} from './getData'
 function App() {
+  const ref = useRef(null)
   const [chatData,setChatData] = useState([
     {text: "Hello", owner: "user"},
     {text: "Hi there, how can I help you?", owner: "bot"}
@@ -16,6 +17,7 @@ function App() {
   function handleClick(e){
     e.preventDefault();
     if(!inputValue) return;
+    setInputValue('')
     setChatData(prevData => {
       return [
       ...prevData,
@@ -24,7 +26,7 @@ function App() {
     ]
     })
     response(inputValue).then(res => {
-      const chatText = res.data.choices[0].text
+      const chatText = res.choices[0].text
       setChatData(prevData => {
         return prevData.map(chat => {
           if(chat.loading){
@@ -45,6 +47,7 @@ function App() {
       handleChange={handleChange}
       inputValue = {inputValue}
       handleClick = {handleClick}
+      inputRef = {ref}
       />
     </Container>
   )

@@ -1,13 +1,22 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 function Chat({data}) {
+  const userVariants = {
+    initial: {opacity: 0,x:100},
+    animate: {opacity: 1,x: 0},
+  }
+  const botVariants = {
+    initial: {opacity: 0,x:-100},
+    animate: {opacity: 1,x: 0},
+  }
   return (
     <div className="chat-box">
       {data.map((chat,index) => {
         return !chat.loading &&
         <motion.p
-        initial={{opacity: 0,y:100}}
-        animate={{opacity: 1,y:0}}
+        variants={chat.owner ==="user" ? userVariants:botVariants}
+        initial={"initial"}
+        animate={"animate"}
         transition={{duration:0.5,type: 'tween'}}
         className=
         {
