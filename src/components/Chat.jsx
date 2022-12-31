@@ -1,10 +1,23 @@
 import React from 'react'
-
-function Chat() {
+import { motion } from 'framer-motion'
+function Chat({data}) {
   return (
     <div className="chat-box">
-        <p className="chat chat-user">How are you lorem</p>
-        <p className="chat chat-bot ">Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, suscipit consectetur! Odio voluptas vero voluptate dolorum aperiam! Hic sit aspernatur commodi iste corrupti ratione itaque, at voluptas ut iusto! Natus.</p>
+      {data.map((chat,index) => {
+        return !chat.loading &&
+        <motion.p
+        initial={{opacity: 0,y:100}}
+        animate={{opacity: 1,y:0}}
+        transition={{duration:0.5,type: 'tween'}}
+        className=
+        {
+        chat.owner === "user" ? 
+        "chat chat-user":
+        "chat chat-bot"
+        }
+        key={index}
+        >{chat.text}</motion.p>
+      })}
     </div>
   )
 }
