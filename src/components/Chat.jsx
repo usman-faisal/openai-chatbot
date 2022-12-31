@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import ChatLoading from "./ChatLoading";
 function Chat({data}) {
   const userVariants = {
     initial: {opacity: 0,x:100},
@@ -12,7 +13,7 @@ function Chat({data}) {
   return (
     <div className="chat-box">
       {data.map((chat,index) => {
-        return !chat.loading &&
+        return !chat.loading ?
         <motion.p
         variants={chat.owner ==="user" ? userVariants:botVariants}
         initial={"initial"}
@@ -25,7 +26,8 @@ function Chat({data}) {
         "chat chat-bot"
         }
         key={index}
-        >{chat.text}</motion.p>
+        >{chat.text}</motion.p>:
+        <ChatLoading />
       })}
     </div>
   )

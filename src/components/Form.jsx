@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import {motion} from "framer-motion"
 function Form({handleChange,handleClick,inputValue,inputRef}) {
   return (
     <form className="form">
@@ -9,9 +9,14 @@ function Form({handleChange,handleClick,inputValue,inputRef}) {
       onChange={handleChange}
       value = {inputValue}
       className="form-input" />
-      <button onClick = {handleClick} className="form-button">
+      <motion.button 
+      onClick = {handleClick} 
+      className="form-button"
+      whileHover={{scale: 1.04}}
+      whileTap = {{scale: 0.95}}
+      >
         Send
-      </button>
+      </motion.button>
     </form>   
   )        
 } 

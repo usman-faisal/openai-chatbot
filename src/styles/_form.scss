@@ -5,8 +5,15 @@
     background-color: #f1f1f1;
     &-input{
         padding: 1rem;
-        width: 80%;
         font-size: 1.8rem;
+        transition: all 0.2s;
+        border-radius: 5px;
+        border: 1px solid #454545;
+        width: 75%;
+        &:focus{
+            outline: none;
+            width: 80%;
+        }
     }
     &-button{
         flex: 1;
@@ -14,6 +21,8 @@
         color: #f1f1f1;
         font-size: 1.8rem;
         transition: all .2s;
+        border-radius: 5px;
+        border: none;
         &:hover{
             background-color: black;
         }
