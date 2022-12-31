@@ -1,0 +1,27 @@
+.chat-box{
+    padding: 2rem;
+    background-color: purple;
+    height: 60vh;
+    overflow-y:scroll;
+
+    &::after{
+        content: '';
+        clear: both;
+        display: table;
+    }
+    .chat{
+        padding: 2rem;
+        min-width: min-content;
+        max-width: 60%;
+        clear: both;
+    &-bot{
+        background-color: #333;
+        float: left;
+    }
+    &-user{
+        float: right;
+        color: black;
+        background-color: aliceblue;
+    }
+}
+}

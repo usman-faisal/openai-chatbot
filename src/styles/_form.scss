@@ -1,0 +1,12 @@
+.form{
+    padding: 2rem;
+    display: flex;
+    gap: .5rem;
+    &-input{
+        padding: 1rem;
+        width: 80%;
+    }
+    &-button{
+        flex: 1;
+    }
+}
