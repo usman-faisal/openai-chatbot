@@ -1,11 +1,9 @@
 import React from "react";
 
-function ChatError() {
+function ChatError({ msg }) {
   return (
     <div className="error">
-      <p className="error-message">
-        Please check your connection and try again
-      </p>
+      <p className="error-message">{JSON.stringify(msg.message) || msg}</p>
     </div>
   );
 }

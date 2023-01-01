@@ -28,11 +28,11 @@ function App() {
     });
     const timer = new Promise((res, rej) => {
       setTimeout(() => {
-        res();
+        rej("Please check your connection and try again");
       }, 10000);
     });
-    Promise.race([
-      response(inputValue).then((res) => {
+    Promise.race([response(inputValue), timer])
+      .then((res) => {
         const chatText = res.data.choices[0].text;
         setChatData((prevData) => {
           return prevData.map((chat) => {
@@ -44,9 +44,8 @@ function App() {
           });
         });
         ref.current.disabled = false;
-      }),
-      timer.then(() => setChatData({ error: true })),
-    ]);
+      })
+      .catch((err) => setChatData({ error: true, msg: err }));
   }
   return (
     <Container>

@@ -33,7 +33,7 @@ function Chat({ data }) {
           );
         })
       ) : (
-        <ChatError />
+        <ChatError msg={data.msg} />
       )}
     </div>
   );
