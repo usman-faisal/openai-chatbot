@@ -1,0 +1,9 @@
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: black;
+  &-message {
+    color: black;
+    font-size: 2rem;
+  }
+}
