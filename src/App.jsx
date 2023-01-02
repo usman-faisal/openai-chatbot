@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Container from "./components/Container";
 import Header from "./components/Header";
-import Chat from "./components/Chat";
+import Chats from "./components/Chats";
 import Form from "./components/Form";
 import { response } from "./getData";
 function App() {
@@ -29,7 +29,7 @@ function App() {
     const timer = new Promise((res, rej) => {
       setTimeout(() => {
         rej("Please check your connection and try again");
-      }, 10000);
+      }, 20000);
     });
     Promise.race([response(inputValue), timer])
       .then((res) => {
@@ -50,7 +50,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <Chat data={chatData} />
+      <Chats data={chatData} />
       <Form
         handleChange={handleChange}
         inputValue={inputValue}
