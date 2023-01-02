@@ -5,15 +5,23 @@ import Chats from "./components/Chats";
 import Form from "./components/Form";
 import { response } from "./getData";
 function App() {
-  const ref = useRef(null);
+  const ref = useRef(null); // ref of the input
+
+  // chat data for full conversation
   const [chatData, setChatData] = useState([
     { text: "Hello", owner: "user" },
     { text: "Hi there, how can I help you?", owner: "bot" },
   ]);
+  //////////////////////////////////
+
+  // handling user input
   const [inputValue, setInputValue] = useState("");
   function handleChange(e) {
     setInputValue(e.target.value);
   }
+  ///////////////////////
+
+  // handling click
   function handleClick(e) {
     e.preventDefault();
     if (!inputValue) return;
@@ -23,15 +31,15 @@ function App() {
       return [
         ...prevData,
         { text: inputValue, owner: "user" },
-        { text: "loading", owner: "bot", loading: true },
+        { loading: true }, // to render "ChatLoading" component when loading is true
       ];
     });
-    const timer = new Promise((res, rej) => {
+    const TimeoutTimer = new Promise((_, rej) => {
       setTimeout(() => {
         rej("Please check your connection and try again");
       }, 20000);
     });
-    Promise.race([response(inputValue), timer])
+    Promise.race([response(inputValue), TimeoutTimer])
       .then((res) => {
         const chatText = res.data.choices[0].text;
         setChatData((prevData) => {
@@ -44,9 +52,12 @@ function App() {
           });
         });
         ref.current.disabled = false;
+        ref.current.focus();
       })
       .catch((err) => setChatData({ error: true, msg: err }));
   }
+  ////////////////////////////////////////////////
+
   return (
     <Container>
       <Header />
